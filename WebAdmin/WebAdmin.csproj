@@ -1,0 +1,771 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2CE7C6B5-2281-4EEA-A512-CC9B42FCD71F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebAdmin</RootNamespace>
+    <AssemblyName>WebAdmin</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44336</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>4.3</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=5.0.16.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.5.0.16\lib\net461\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Primitives, Version=5.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.5.0.1\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Pipelines, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Pipelines.5.0.2\lib\net461\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Contant\PermisstionContant.cs" />
+    <Compile Include="Contant\UrlConTant.cs" />
+    <Compile Include="Contant\UserContant.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CustormerController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImgSearchController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SendoController.cs" />
+    <Compile Include="Controllers\StatisticalController.cs" />
+    <Compile Include="Controllers\UseController.cs" />
+    <Compile Include="Controllers\VoucherController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ImageSearchAlgorithm\ImageSearchAlgorithm.cs" />
+    <Compile Include="ImageSearchAlgorithm\SearchImage.cs" />
+    <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Categorie.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\CommentNew.cs" />
+    <Compile Include="Models\Contract.cs" />
+    <Compile Include="Models\Custormer.cs" />
+    <Compile Include="Models\Employer.cs" />
+    <Compile Include="Models\GiaoHangTietKiem\GiaoHangTietKiem.cs" />
+    <Compile Include="Models\Img.cs" />
+    <Compile Include="Models\Login\User.cs" />
+    <Compile Include="Models\ModelView\ApiResult.cs" />
+    <Compile Include="Models\ModelView\RoleView.cs" />
+    <Compile Include="Models\ModelView\UserView.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\NewType.cs" />
+    <Compile Include="Models\Option_Product.cs" />
+    <Compile Include="Models\Permisstion.cs" />
+    <Compile Include="Models\PerMisstion\PermisstionType.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Repository\UserService.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Role_Permisstion.cs" />
+    <Compile Include="Models\SendoData\Sendo.cs" />
+    <Compile Include="Models\System\EmailHelper.cs" />
+    <Compile Include="Models\System\FileUploadModel.cs" />
+    <Compile Include="Models\System\MD5.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Voucher.cs" />
+    <Compile Include="Models\VoucherDetail.cs" />
+    <Compile Include="Models\VoucherOrder.cs" />
+    <Compile Include="Models\VoucherOrderDetail.cs" />
+    <Compile Include="Models\WebBanHangDB.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\atlantis.css" />
+    <Content Include="assets\css\atlantis.min.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\demo.css" />
+    <Content Include="assets\css\fonts.css" />
+    <Content Include="assets\css\fonts.min.css" />
+    <Content Include="assets\fonts\flaticon\flaticon.css" />
+    <Content Include="assets\fonts\flaticon\flaticon.html" />
+    <Content Include="assets\fonts\flaticon\Flaticon.svg" />
+    <Content Include="assets\fonts\fontawesome\fa-brands-400.svg" />
+    <Content Include="assets\fonts\fontawesome\fa-regular-400.svg" />
+    <Content Include="assets\fonts\fontawesome\fa-solid-900.svg" />
+    <Content Include="assets\fonts\simple-line-icons\Simple-Line-Icons.svg" />
+    <Content Include="assets\img\arashmil.jpg" />
+    <Content Include="assets\img\bg-404.jpeg" />
+    <Content Include="assets\img\bg-abstract.png" />
+    <Content Include="assets\img\bg-abstract2.png" />
+    <Content Include="assets\img\blogpost.jpg" />
+    <Content Include="assets\img\chadengle.jpg" />
+    <Content Include="assets\img\icon.ico" />
+    <Content Include="assets\img\icon.png" />
+    <Content Include="assets\img\icon.svg" />
+    <Content Include="assets\img\img-shadow.png" />
+    <Content Include="assets\img\jm_denis.jpg" />
+    <Content Include="assets\img\logo.svg" />
+    <Content Include="assets\img\logo2.svg" />
+    <Content Include="assets\img\logoalternatif.svg" />
+    <Content Include="assets\img\logoproduct.svg" />
+    <Content Include="assets\img\logoproduct2.svg" />
+    <Content Include="assets\img\logoproduct3.svg" />
+    <Content Include="assets\img\mlane.jpg" />
+    <Content Include="assets\img\profile.jpg" />
+    <Content Include="assets\img\profile2.jpg" />
+    <Content Include="assets\img\sauro.jpg" />
+    <Content Include="assets\img\talha.jpg" />
+    <Content Include="assets\img\visa.svg" />
+    <Content Include="assets\js\atlantis.js" />
+    <Content Include="assets\js\atlantis.min.js" />
+    <Content Include="assets\js\atlantis2.js" />
+    <Content Include="assets\js\core\bootstrap.min.js" />
+    <Content Include="assets\js\core\jquery.3.2.1.min.js" />
+    <Content Include="assets\js\core\popper.min.js" />
+    <Content Include="assets\js\demo.js" />
+    <Content Include="assets\js\plugin\bootstrap-notify\bootstrap-notify.min.js" />
+    <Content Include="assets\js\plugin\chart-circle\circles.min.js" />
+    <Content Include="assets\js\plugin\chart.js\chart.min.js" />
+    <Content Include="assets\js\plugin\datatables\datatables.min.js" />
+    <Content Include="assets\js\plugin\jquery-scrollbar\jquery.scrollbar.min.js" />
+    <Content Include="assets\js\plugin\jquery-ui-1.12.1.custom\jquery-ui.min.js" />
+    <Content Include="assets\js\plugin\jquery-ui-touch-punch\jquery.ui.touch-punch.min.js" />
+    <Content Include="assets\js\plugin\jquery.sparkline\jquery.sparkline.min.js" />
+    <Content Include="assets\js\plugin\sweetalert\sweetalert.min.js" />
+    <Content Include="assets\js\plugin\webfont\webfont.min.js" />
+    <Content Include="assets\js\select2.js" />
+    <Content Include="assets\js\setting-demo.js" />
+    <Content Include="assets\js\setting-demo2.js" />
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Microsoft.AspNetCore.Http.Features.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.Extensions.Primitives.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\Microsoft.Win32.Primitives.dll" />
+    <Content Include="bin\roslyn\System.AppContext.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Console.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
+    <Content Include="bin\roslyn\System.Globalization.Calendars.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.ZipFile.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Net.Http.dll" />
+    <Content Include="bin\roslyn\System.Net.Sockets.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
+    <Content Include="bin\roslyn\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\roslyn\System.ValueTuple.dll" />
+    <Content Include="bin\roslyn\System.Xml.ReaderWriter.dll" />
+    <Content Include="bin\roslyn\System.Xml.XmlDocument.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Buffers.dll" />
+    <Content Include="bin\System.IO.Pipelines.dll" />
+    <Content Include="bin\System.Memory.dll" />
+    <Content Include="bin\System.Numerics.Vectors.dll" />
+    <Content Include="bin\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="bin\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\WebAdmin.dll" />
+    <Content Include="bin\WebAdmin.pdb" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\css\main.css" />
+    <Content Include="Content\css\util.css" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\images\icons\favicon.ico" />
+    <Content Include="Content\images\img-01.png" />
+    <Content Include="Content\ImgSearch\00c85628-25fa-4009-a91d-65243996ae35.jpg" />
+    <Content Include="Content\ImgSearch\00de89fb-64bf-4277-a668-c6eac50af118.jpg" />
+    <Content Include="Content\ImgSearch\0109cd2f-197f-4038-a3d0-3197ef96c6e9.jpg" />
+    <Content Include="Content\ImgSearch\01cbcb89-2e0b-46e4-b850-604457d818b3.jpg" />
+    <Content Include="Content\ImgSearch\02775435-7ad8-4f2c-8ebc-c39b15901511.jpg" />
+    <Content Include="Content\ImgSearch\05320b4d-6762-4e07-ba01-fb9cd1b10be4.jpg" />
+    <Content Include="Content\ImgSearch\05e9dfbb-f4af-42c0-89c1-a0b168b21da3.jpg" />
+    <Content Include="Content\ImgSearch\0612a710-07f3-4e1a-9116-580e85a12c97.jpg" />
+    <Content Include="Content\ImgSearch\08aa0cc9-7180-45e9-9410-0b53162b7b7b.jpg" />
+    <Content Include="Content\ImgSearch\092980f1-4dc9-4ecf-b389-4911bf7fe5eb.jpg" />
+    <Content Include="Content\ImgSearch\0942ff76-6db9-42c6-a27f-0d172b3c4ab1.jpg" />
+    <Content Include="Content\ImgSearch\0a3c1cb3-a7a8-4ec9-a811-5d46ab65a618.jpg" />
+    <Content Include="Content\ImgSearch\0b4230e3-95f0-4754-91de-bf5916ff3d07.jpg" />
+    <Content Include="Content\ImgSearch\0c6c45f4-1a91-4f2e-bdbc-5d755b96ead0.jpg" />
+    <Content Include="Content\ImgSearch\0cd00a00-1d62-4074-b0d6-04e2dc5f3788.jpg" />
+    <Content Include="Content\ImgSearch\0e47bf50-8e23-43e8-aaff-acbd5bcfb898.jpg" />
+    <Content Include="Content\ImgSearch\0e77ed44-a5ae-4b17-bc9b-e8ffb722eed5.jpg" />
+    <Content Include="Content\ImgSearch\10f473f1-f594-4180-8da6-65791a263713.jpg" />
+    <Content Include="Content\ImgSearch\12778991-735c-4952-90d7-c708a29e22b7.jpg" />
+    <Content Include="Content\ImgSearch\13eb1da5-bea9-48cf-9c4b-2ef7c4ba7182.jpg" />
+    <Content Include="Content\ImgSearch\13f8441b-28cd-461b-b21b-fa7d763bbe12.jpg" />
+    <Content Include="Content\ImgSearch\144b73ae-a166-4e97-9a10-1a0b433c479d.jpg" />
+    <Content Include="Content\ImgSearch\15915ee9-e942-4adf-a2d6-1419e38a98e0.jpg" />
+    <Content Include="Content\ImgSearch\17af8ef8-9672-4720-812d-18f199645e27.jpg" />
+    <Content Include="Content\ImgSearch\18508f2a-9b38-45e6-b732-21b8a48bc215.jpg" />
+    <Content Include="Content\ImgSearch\1a0a3251-e1f4-443f-ae82-2e6203cb1b91.jpg" />
+    <Content Include="Content\ImgSearch\1b6da593-5511-485e-8af2-81060ab41347.jpg" />
+    <Content Include="Content\ImgSearch\1c563d99-ca2f-4983-8cef-7f5bafb92755.jpg" />
+    <Content Include="Content\ImgSearch\1d55df00-ec7b-4897-979c-8844fac439a6.jpg" />
+    <Content Include="Content\ImgSearch\1e4f7601-9ae8-4c89-b984-02209b4a8afd.jpg" />
+    <Content Include="Content\ImgSearch\1e6ff4b2-986a-4f92-af5c-512b494870ad.jpg" />
+    <Content Include="Content\ImgSearch\1e812fec-3b7e-4326-b303-118b071b4dd4.jpg" />
+    <Content Include="Content\ImgSearch\1f530d70-75e2-4f1f-8516-a3928abff7b2.jpg" />
+    <Content Include="Content\ImgSearch\1ff3073a-d201-4a72-ab8d-8c9d817980d4.jpg" />
+    <Content Include="Content\ImgSearch\21713450-2f9c-4ac9-bce2-f466a82af5bd.jpg" />
+    <Content Include="Content\ImgSearch\2222d90c-8674-41c6-94bc-afcc66ba3c1e.jpg" />
+    <Content Include="Content\ImgSearch\22496b0d-3ae9-4c5c-9c00-bcd084605263.jpg" />
+    <Content Include="Content\ImgSearch\23439750-a536-4992-a857-867c6996ac9b.jpg" />
+    <Content Include="Content\ImgSearch\24743d3c-47d9-4a50-b40e-c44bbd5bbb41.jpg" />
+    <Content Include="Content\ImgSearch\24b39a23-5eed-4b5f-bfe9-69ea39726aa5.jpg" />
+    <Content Include="Content\ImgSearch\24c9b496-9673-4d4b-ac7d-8cc7a525007e.jpg" />
+    <Content Include="Content\ImgSearch\25dea4c1-1553-4861-8cce-76c257a53a95.jpg" />
+    <Content Include="Content\ImgSearch\26a28f6e-963b-4393-8d99-fb56480f8b71.jpg" />
+    <Content Include="Content\ImgSearch\281347cd-858e-4147-ac36-d5dfe8b37d8e.jpg" />
+    <Content Include="Content\ImgSearch\287d880c-0579-4d3b-9217-76500d6f5c3b.jpg" />
+    <Content Include="Content\ImgSearch\288aea3b-cfe0-4485-8ac7-c8f7a00373c4.jpg" />
+    <Content Include="Content\ImgSearch\28b582c5-5e44-46a4-a183-a348958953f5.jpg" />
+    <Content Include="Content\ImgSearch\2970b135-9d78-486d-a1fd-2a41b52c3a39.jpg" />
+    <Content Include="Content\ImgSearch\2b31f2f5-d1c5-4b99-ad80-0ab396975879.jpg" />
+    <Content Include="Content\ImgSearch\2cd96bb9-9dac-429c-81da-8d09ca3d3819.jpg" />
+    <Content Include="Content\ImgSearch\32cc6d9f-9897-4c64-bc8b-d75c4a76fe8a.jpg" />
+    <Content Include="Content\ImgSearch\32eb8f38-c374-468b-836d-bd503353a8d0.jpg" />
+    <Content Include="Content\ImgSearch\34d76d2f-4324-49c1-9aca-dd1e21dc81e3.jpg" />
+    <Content Include="Content\ImgSearch\38587785-5adc-42b7-9219-732a97a1d2bc.jpg" />
+    <Content Include="Content\ImgSearch\38ab6a6c-5a23-4462-b5f3-7518e65a7086.jpg" />
+    <Content Include="Content\ImgSearch\38f09b76-8790-4097-9e5b-413b71280c5e.jpg" />
+    <Content Include="Content\ImgSearch\39a5cf08-be68-4f8e-8c5a-e2326c571d23.jpg" />
+    <Content Include="Content\ImgSearch\3a0b5d56-62f5-4ed2-9cc0-7ed32a0abc5e.jpg" />
+    <Content Include="Content\ImgSearch\3ac3e0a1-0c6d-4c71-931a-3a660b94c071.jpg" />
+    <Content Include="Content\ImgSearch\3baabcef-2b15-456c-bc13-fa183659f1a2.jpg" />
+    <Content Include="Content\ImgSearch\3bd2e6d2-369a-4d96-a601-6ad8e1bbee42.jpg" />
+    <Content Include="Content\ImgSearch\3dc84923-a515-4c22-83eb-db1f4a530b14.jpg" />
+    <Content Include="Content\ImgSearch\406cad31-cc5c-4ad3-971b-9efbe4032081.jpg" />
+    <Content Include="Content\ImgSearch\41503f56-aa4b-414c-94fd-e64aff98e287.jpg" />
+    <Content Include="Content\ImgSearch\4181120c-e290-45df-a09c-98e13b46a6c7.jpg" />
+    <Content Include="Content\ImgSearch\4189571f-2ebb-46be-b73f-df884f2465c0.jpg" />
+    <Content Include="Content\ImgSearch\4492fabc-d1f3-4737-9e83-906623dc9d41.jpg" />
+    <Content Include="Content\ImgSearch\47ba15f5-517a-4f61-832d-f61c6618b5be.jpg" />
+    <Content Include="Content\ImgSearch\48c05f63-5f31-49c3-8a2a-cd3af559ce76.jpg" />
+    <Content Include="Content\ImgSearch\49c827c9-46df-4b96-95df-e03b8869148b.jpg" />
+    <Content Include="Content\ImgSearch\4d8416c2-2ca4-415a-a053-d48e9ea71a72.jpg" />
+    <Content Include="Content\ImgSearch\4ed8923a-a27d-4a1c-a326-f4aae5bf8019.jpg" />
+    <Content Include="Content\ImgSearch\512112c7-5b15-4e90-bd17-9936ce604fa3.jpg" />
+    <Content Include="Content\ImgSearch\51f23277-22e1-46e1-988a-99d8eacc3e0c.jpg" />
+    <Content Include="Content\ImgSearch\52a76e88-c4b2-498b-a4f4-2f766252995d.jpg" />
+    <Content Include="Content\ImgSearch\53ba5604-6499-4c81-acbf-308dc5447036.jpg" />
+    <Content Include="Content\ImgSearch\550b168c-04c3-4ade-b227-f6db35fb6262.jpg" />
+    <Content Include="Content\ImgSearch\55ea2ae0-ef8d-43bd-a824-c328dc4904ce.jpg" />
+    <Content Include="Content\ImgSearch\582e2231-dc3b-494d-aa42-1cc1479859ab.jpg" />
+    <Content Include="Content\ImgSearch\59ac70d6-76e3-4d7c-af4e-211207bb0bd5.jpg" />
+    <Content Include="Content\ImgSearch\5ae15c4c-1b5f-422f-a800-9497f2442bca.jpg" />
+    <Content Include="Content\ImgSearch\5c53e707-2e8b-4d9f-bae4-b36d19d50c61.jpg" />
+    <Content Include="Content\ImgSearch\5c5d45c6-1dfc-41c2-95ee-4fc5c0e4db72.jpg" />
+    <Content Include="Content\ImgSearch\5e18eb0e-81a7-40a3-affd-052f2b812eb4.jpg" />
+    <Content Include="Content\ImgSearch\5f7d157f-1d87-44cd-86b9-48e3fe4154b0.jpg" />
+    <Content Include="Content\ImgSearch\60ba95d4-5364-4625-a14b-482e3e462c95.jpg" />
+    <Content Include="Content\ImgSearch\62ac9540-2dc3-4960-af52-4bc998aa8442.jpg" />
+    <Content Include="Content\ImgSearch\6443e4b3-0605-4914-a20a-dbf2c4c30ee9.jpg" />
+    <Content Include="Content\ImgSearch\649e1605-d2d9-454c-a890-efbabb1f47e1.jpg" />
+    <Content Include="Content\ImgSearch\65242250-d3c7-46b0-b9a4-66629489bc69.jpg" />
+    <Content Include="Content\ImgSearch\69212c28-fc91-4750-994d-06b86fefc407.jpg" />
+    <Content Include="Content\ImgSearch\692cb64d-bd74-412a-b51a-a64f953788f6.jpg" />
+    <Content Include="Content\ImgSearch\6a109497-fbaa-4624-8c6b-2e21ba638d4c.jpg" />
+    <Content Include="Content\ImgSearch\6a53a77d-dd69-4081-a611-e4862734279d.jpg" />
+    <Content Include="Content\ImgSearch\6b4187a2-b03c-410e-a227-b8575b233e5a.jpg" />
+    <Content Include="Content\ImgSearch\6be21cfa-81a5-4b3f-9655-f16651023d8d.jpg" />
+    <Content Include="Content\ImgSearch\6d9aa649-b7d7-416d-8671-59b0120857b4.jpg" />
+    <Content Include="Content\ImgSearch\6f03e669-4e0d-480c-b7e8-5a37df72003c.jpg" />
+    <Content Include="Content\ImgSearch\6f4257d5-42b3-4202-a64c-2cc97ba9c135.jpg" />
+    <Content Include="Content\ImgSearch\7431adc7-b1ae-4e85-b97b-46abf1919dc2.jpg" />
+    <Content Include="Content\ImgSearch\746f1ef5-5377-45d3-a60f-bfef1e3407f9.jpg" />
+    <Content Include="Content\ImgSearch\74ecfefb-f3ba-4526-b737-554c2df3cfec.jpg" />
+    <Content Include="Content\ImgSearch\77dfc916-9161-40d9-a219-175304c583a0.jpg" />
+    <Content Include="Content\ImgSearch\794538d3-24ef-4053-b663-d18a4548fe2a.jpg" />
+    <Content Include="Content\ImgSearch\79bf8c71-cb56-4a03-90f8-ded7c551a21f.jpg" />
+    <Content Include="Content\ImgSearch\7a358870-5c85-45f9-887c-04b00682787d.jpg" />
+    <Content Include="Content\ImgSearch\7b89ded4-ed22-4bd0-aad2-bc0f1e0f9557.jpg" />
+    <Content Include="Content\ImgSearch\7b8c11d7-bae4-440e-ad37-1f2ff694f8a7.jpg" />
+    <Content Include="Content\ImgSearch\7eb5d129-b324-4572-a0bd-e40a7c0c87ac.jpg" />
+    <Content Include="Content\ImgSearch\7f5837f8-dca8-4bee-9b8d-d4d2a462fdef.jpg" />
+    <Content Include="Content\ImgSearch\7fe52165-9468-4386-9d40-c96c19786db5.jpg" />
+    <Content Include="Content\ImgSearch\82b30360-df57-4058-9095-ecb304b7ad65.jpg" />
+    <Content Include="Content\ImgSearch\82cf8922-9efd-42cd-9ba9-1ce09136bb63.jpg" />
+    <Content Include="Content\ImgSearch\83689f11-651d-465c-840d-7a2ae56283d6.jpg" />
+    <Content Include="Content\ImgSearch\83b66cf0-e636-486b-be4d-a6ed08ed3452.jpg" />
+    <Content Include="Content\ImgSearch\84d27781-6aba-46b6-8c1d-a6b3c553f944.jpg" />
+    <Content Include="Content\ImgSearch\84da19fe-337a-4718-95eb-5aa70dbcf5d8.jpg" />
+    <Content Include="Content\ImgSearch\85b19400-9eac-4233-a6f7-d9b670a8b34f.jpg" />
+    <Content Include="Content\ImgSearch\864661db-18ca-423d-a7db-93f1d8b95084.jpg" />
+    <Content Include="Content\ImgSearch\8804e052-dcc7-4a71-8ae5-41adf45f5699.jpg" />
+    <Content Include="Content\ImgSearch\8a00553a-0c62-4504-9275-b262040fd806.jpg" />
+    <Content Include="Content\ImgSearch\8d5ad15a-4826-42d2-9656-940e2d8da48e.jpg" />
+    <Content Include="Content\ImgSearch\8dd72fe0-4e83-4527-82ba-3c044c225455.jpg" />
+    <Content Include="Content\ImgSearch\8e2b7c1b-5323-46cc-b761-188882684e09.jpg" />
+    <Content Include="Content\ImgSearch\8f658929-427c-4fcb-9f93-72c8b49529aa.jpg" />
+    <Content Include="Content\ImgSearch\8f7677cf-eeee-46a3-b8e6-633b7a8088b5.jpg" />
+    <Content Include="Content\ImgSearch\91dd3c1d-a7bc-419c-be22-78dffe5f9a31.jpg" />
+    <Content Include="Content\ImgSearch\94de9f80-d978-49bf-b25a-55c2d1fea7ae.jpg" />
+    <Content Include="Content\ImgSearch\9591759e-ad9f-4364-bed5-9631ac38502b.jpg" />
+    <Content Include="Content\ImgSearch\9613b0f7-8468-424a-b366-a51f670567d1.jpg" />
+    <Content Include="Content\ImgSearch\97b8abda-b563-420a-9f9f-2099fca0de0c.jpg" />
+    <Content Include="Content\ImgSearch\98035324-c743-48bf-8517-4b4d23c26f39.jpg" />
+    <Content Include="Content\ImgSearch\99922b33-b744-4f31-90bc-5e5f5ac5675f.jpg" />
+    <Content Include="Content\ImgSearch\9a958973-4c43-4973-9cc4-da2673ca0204.jpg" />
+    <Content Include="Content\ImgSearch\9f52003b-45c7-4d26-9428-4e1812c3f0a6.jpg" />
+    <Content Include="Content\ImgSearch\a04c0284-e4dd-4acc-9879-f5e439f884ff.jpg" />
+    <Content Include="Content\ImgSearch\a09f3f3b-1c8a-4923-9e13-3c77c79042af.jpg" />
+    <Content Include="Content\ImgSearch\a1297cc7-c2db-4ace-b5bb-9fbd0eaf52b9.jpg" />
+    <Content Include="Content\ImgSearch\a1cc2864-3922-41eb-bbe8-276e3cff399b.jpg" />
+    <Content Include="Content\ImgSearch\a25a9368-24b4-4629-b08c-24401442b985.jpg" />
+    <Content Include="Content\ImgSearch\a39e25e1-4c7f-4dcb-a2c0-74d1fbea044b.jpg" />
+    <Content Include="Content\ImgSearch\a3ebb6b7-6fd4-4a32-90bd-84017898f2a7.jpg" />
+    <Content Include="Content\ImgSearch\a4af0157-8fc5-4e6e-b5b9-d41bb8cf4bb8.jpg" />
+    <Content Include="Content\ImgSearch\a4c6aab0-0f6f-4a4e-a6a6-fd43e437fe97.jpg" />
+    <Content Include="Content\ImgSearch\a5b414c6-af88-4833-a020-6df5b3b559ae.jpg" />
+    <Content Include="Content\ImgSearch\a8081862-e0fc-44fc-ac50-a3ff7d9b283e.jpg" />
+    <Content Include="Content\ImgSearch\a835a401-ee0e-4450-b3ef-8ae3198f9b46.jpg" />
+    <Content Include="Content\ImgSearch\a987e655-b560-4293-839e-22be8fd98c73.jpg" />
+    <Content Include="Content\ImgSearch\a9adc0eb-ea71-4d18-bc5f-a343789727a4.jpg" />
+    <Content Include="Content\ImgSearch\abaf4cc7-9aad-45b6-92c9-8cccda94f7ff.jpg" />
+    <Content Include="Content\ImgSearch\ac7de0f6-8dcf-4cbd-a77b-6228f50ad748.jpg" />
+    <Content Include="Content\ImgSearch\af124466-37bb-4bb1-b492-6c58818679a1.jpg" />
+    <Content Include="Content\ImgSearch\b03510ac-2851-4248-9331-f6f658de4c50.jpg" />
+    <Content Include="Content\ImgSearch\b0918533-c566-4c38-aeea-6708b7515040.jpg" />
+    <Content Include="Content\ImgSearch\b3754e78-0a8d-48e2-a7d5-13ce5a200577.jpg" />
+    <Content Include="Content\ImgSearch\b399064c-2502-4ad2-b785-ac82a5ce4c36.jpg" />
+    <Content Include="Content\ImgSearch\b3c4f914-58bd-464e-8fef-c51c5e009e03.jpg" />
+    <Content Include="Content\ImgSearch\b44e4a7c-625a-414f-9b7e-8cfc57cc5006.jpg" />
+    <Content Include="Content\ImgSearch\b567c8b9-5f29-47f0-ade8-0723fa488ca4.jpg" />
+    <Content Include="Content\ImgSearch\b5931253-9ae4-413c-8e0a-c0b3f7ab2f3e.jpg" />
+    <Content Include="Content\ImgSearch\b5f9465e-97e5-4326-a08b-797976aac875.jpg" />
+    <Content Include="Content\ImgSearch\b6ed3fc7-6e5a-409a-9084-cd4d06ae24b1.jpg" />
+    <Content Include="Content\ImgSearch\b89ec9bc-d2c2-4971-acdc-f0fd157dcf4e.jpg" />
+    <Content Include="Content\ImgSearch\ba6b0c99-7615-4315-99ea-7df768699ff4.jpg" />
+    <Content Include="Content\ImgSearch\bb499130-5986-4302-9238-0e02d09a6859.jpg" />
+    <Content Include="Content\ImgSearch\bde0d054-64d0-41af-8211-b863b6c8d4aa.jpg" />
+    <Content Include="Content\ImgSearch\c06a1655-1292-44d1-bcb5-bd3f9eeaf339.jpg" />
+    <Content Include="Content\ImgSearch\c0a1f96c-e0b1-49c3-b8c6-cbf850c6fce8.jpg" />
+    <Content Include="Content\ImgSearch\c1fac826-6278-46ed-96e3-8adc07723027.jpg" />
+    <Content Include="Content\ImgSearch\c2f9a936-34b2-440a-9ecc-55a4528cf87b.jpg" />
+    <Content Include="Content\ImgSearch\c40df065-d4e8-47de-b1f8-d285b3af69cb.jpg" />
+    <Content Include="Content\ImgSearch\c5602dcd-ed9b-47df-85ba-274ee8615c14.jpg" />
+    <Content Include="Content\ImgSearch\c5cb0f66-6c27-4e55-92fa-8e0104dca21c.jpg" />
+    <Content Include="Content\ImgSearch\c67a3dee-84c9-4006-9add-25512f939be9.jpg" />
+    <Content Include="Content\ImgSearch\c6a4f642-1107-47e4-a2a5-5acc5d50408a.jpg" />
+    <Content Include="Content\ImgSearch\c771d7c2-cc3f-49de-916c-bf984be09723.jpg" />
+    <Content Include="Content\ImgSearch\c7f8453b-b00d-4f51-9da1-86f3766dfe46.jpg" />
+    <Content Include="Content\ImgSearch\c83e9a1b-2c59-480b-b325-26624982ed51.jpg" />
+    <Content Include="Content\ImgSearch\c9196c5d-5a87-4fc2-94e1-487cdaafbc51.jpg" />
+    <Content Include="Content\ImgSearch\c94064be-aa74-4511-b604-796b7ed52bda.jpg" />
+    <Content Include="Content\ImgSearch\ca4b7675-73a3-47a8-9c0b-724d0227d594.jpg" />
+    <Content Include="Content\ImgSearch\cac5dffb-5c71-4ee9-98fd-b5077f2ca0c6.jpg" />
+    <Content Include="Content\ImgSearch\cc7955a9-6267-4dc1-bf45-6890b678020c.jpg" />
+    <Content Include="Content\ImgSearch\ccc39782-b462-4cab-9f9b-8aaa3a051a9a.jpg" />
+    <Content Include="Content\ImgSearch\ce11d566-a286-4047-8b1c-56ac71156e9d.jpg" />
+    <Content Include="Content\ImgSearch\cef62903-264f-4039-a17d-35295fff4617.jpg" />
+    <Content Include="Content\ImgSearch\cf272a6b-b5ea-4547-8db8-a9e28ed43132.jpg" />
+    <Content Include="Content\ImgSearch\d030d6d0-a2d3-4c75-bfa0-61de1eb0c82c.jpg" />
+    <Content Include="Content\ImgSearch\d03db1d5-8c06-4c01-9653-9f9eaef9a12f.jpg" />
+    <Content Include="Content\ImgSearch\d3b4105e-c9cb-4612-801c-efbf5b3043e0.jpg" />
+    <Content Include="Content\ImgSearch\d77a4a10-1d18-4c24-8af2-fb5d88d5a172.jpg" />
+    <Content Include="Content\ImgSearch\d7ae2cc2-fea5-437c-a6d7-e056930f925b.jpg" />
+    <Content Include="Content\ImgSearch\d881a610-4096-492d-8148-5565d2a25278.jpg" />
+    <Content Include="Content\ImgSearch\d90dd736-bc11-4a23-9e89-0998039bbebe.jpg" />
+    <Content Include="Content\ImgSearch\dbd8ea0a-3d8f-41b2-b8a2-ee8aa1e2db73.jpg" />
+    <Content Include="Content\ImgSearch\dd3f3a3f-7e70-4d28-be1a-22a27d433274.jpg" />
+    <Content Include="Content\ImgSearch\dd5eed70-0a60-416d-aba7-b5d750681487.jpg" />
+    <Content Include="Content\ImgSearch\deba8d3b-0189-4676-9e74-219849799345.jpg" />
+    <Content Include="Content\ImgSearch\dee315cf-46eb-45ce-a42b-6488d2023f55.jpg" />
+    <Content Include="Content\ImgSearch\df6ff9fa-a9c6-451f-b5a8-bbaa3a31d273.jpg" />
+    <Content Include="Content\ImgSearch\e020fb8b-8e89-4c86-8e4b-0bdbdeb9285e.jpg" />
+    <Content Include="Content\ImgSearch\e0752de4-5c32-4128-9f3f-69b726564d00.jpg" />
+    <Content Include="Content\ImgSearch\e3a0d66b-65da-4a6d-bff9-92b27876104c.jpg" />
+    <Content Include="Content\ImgSearch\e4446b15-58d7-4554-9f0a-f68095c9e09d.jpg" />
+    <Content Include="Content\ImgSearch\e6edea00-7e31-431f-97ce-8d638bbfcf44.jpg" />
+    <Content Include="Content\ImgSearch\e7bac1f7-7e65-4ef0-8d90-6f778da746b8.jpg" />
+    <Content Include="Content\ImgSearch\e92618ab-d298-40e4-8ef7-ede6011d6956.jpg" />
+    <Content Include="Content\ImgSearch\ea9953c7-06fe-4dcc-b815-5318a5200bf8.jpg" />
+    <Content Include="Content\ImgSearch\eb58afb5-d418-49e0-8e7c-315de8a63c20.jpg" />
+    <Content Include="Content\ImgSearch\ec7361c4-4b43-4b3c-9683-bf164e6fc275.jpg" />
+    <Content Include="Content\ImgSearch\f15b16e6-9455-4a3d-9a3d-d03f14cecce7.jpg" />
+    <Content Include="Content\ImgSearch\f160f6be-0472-4178-803b-48d56b282d32.jpg" />
+    <Content Include="Content\ImgSearch\f2982c64-bf62-4e3f-830d-47c1947bca2b.jpg" />
+    <Content Include="Content\ImgSearch\f320486f-3edd-4cc5-8fbf-0554e7bcb642.jpg" />
+    <Content Include="Content\ImgSearch\f46bdb5b-b8fd-4163-a78d-e6d0baa00fea.jpg" />
+    <Content Include="Content\ImgSearch\f4807990-c30d-4d58-9bce-e1c5525ca970.jpg" />
+    <Content Include="Content\ImgSearch\f49e1374-608e-4ecc-8c20-20f6cbfdf859.jpg" />
+    <Content Include="Content\ImgSearch\f510c6d7-528a-4962-984d-662d3b86fcd8.jpg" />
+    <Content Include="Content\ImgSearch\f59c0e8c-b66f-4afc-8866-a3250121bab7.jpg" />
+    <Content Include="Content\ImgSearch\f6c60fd9-f9a3-451b-b1a9-6e6e4c118bb0.jpg" />
+    <Content Include="Content\ImgSearch\f7513d05-cf9e-4c30-8069-57929d7bbcb4.jpg" />
+    <Content Include="Content\ImgSearch\f9ad50ff-787e-46b4-b878-11fe8812b4b8.jpg" />
+    <Content Include="Content\ImgSearch\f9c80ba1-7f28-42ca-9990-e6d4bff3b73d.jpg" />
+    <Content Include="Content\ImgSearch\fa944a91-1217-42a0-b70a-70c717c99923.jpg" />
+    <Content Include="Content\ImgSearch\fceeec6c-e5f2-4afe-a91d-ee61ac1f267b.jpg" />
+    <Content Include="Content\ImgSearch\fcf294ad-315e-49ab-a36f-05e3c937fcd6.jpg" />
+    <Content Include="Content\ImgSearch\fdf17f91-b0ec-48a8-849a-eeb78bf277f1.jpg" />
+    <Content Include="Content\ImgSearch\fe8eae47-a9d1-4f6d-8ac4-e3900a61ec49.jpg" />
+    <Content Include="Content\ImgSearch\fec9d4d0-31f2-4454-949a-86522120ca05.jpg" />
+    <Content Include="Content\ImgSearch\ff863f67-ba8e-4e88-a82e-8363dd6589cd.jpg" />
+    <Content Include="Content\ImgSearch\ffc169d5-f082-47a3-a629-f2d99533cfc2.jpg" />
+    <Content Include="Content\js\main.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\summernote\lang\summernote-ar-AR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-bg-BG.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ca-ES.js" />
+    <Content Include="Scripts\summernote\lang\summernote-cs-CZ.js" />
+    <Content Include="Scripts\summernote\lang\summernote-da-DK.js" />
+    <Content Include="Scripts\summernote\lang\summernote-de-DE.js" />
+    <Content Include="Scripts\summernote\lang\summernote-el-GR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-es-ES.js" />
+    <Content Include="Scripts\summernote\lang\summernote-es-EU.js" />
+    <Content Include="Scripts\summernote\lang\summernote-fa-IR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-fi-FI.js" />
+    <Content Include="Scripts\summernote\lang\summernote-fr-FR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-gl-ES.js" />
+    <Content Include="Scripts\summernote\lang\summernote-he-IL.js" />
+    <Content Include="Scripts\summernote\lang\summernote-hr-HR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-hu-HU.js" />
+    <Content Include="Scripts\summernote\lang\summernote-id-ID.js" />
+    <Content Include="Scripts\summernote\lang\summernote-it-IT.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ja-JP.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ko-KR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-lt-LT.js" />
+    <Content Include="Scripts\summernote\lang\summernote-lt-LV.js" />
+    <Content Include="Scripts\summernote\lang\summernote-mn-MN.js" />
+    <Content Include="Scripts\summernote\lang\summernote-nb-NO.js" />
+    <Content Include="Scripts\summernote\lang\summernote-nl-NL.js" />
+    <Content Include="Scripts\summernote\lang\summernote-pl-PL.js" />
+    <Content Include="Scripts\summernote\lang\summernote-pt-BR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-pt-PT.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ro-RO.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ru-RU.js" />
+    <Content Include="Scripts\summernote\lang\summernote-sk-SK.js" />
+    <Content Include="Scripts\summernote\lang\summernote-sl-SI.js" />
+    <Content Include="Scripts\summernote\lang\summernote-sr-RS-Latin.js" />
+    <Content Include="Scripts\summernote\lang\summernote-sr-RS.js" />
+    <Content Include="Scripts\summernote\lang\summernote-sv-SE.js" />
+    <Content Include="Scripts\summernote\lang\summernote-ta-IN.js" />
+    <Content Include="Scripts\summernote\lang\summernote-th-TH.js" />
+    <Content Include="Scripts\summernote\lang\summernote-tr-TR.js" />
+    <Content Include="Scripts\summernote\lang\summernote-uk-UA.js" />
+    <Content Include="Scripts\summernote\lang\summernote-vi-VN.js" />
+    <Content Include="Scripts\summernote\lang\summernote-zh-CN.js" />
+    <Content Include="Scripts\summernote\lang\summernote-zh-TW.js" />
+    <Content Include="Scripts\summernote\plugin\databasic\summernote-ext-databasic.css" />
+    <Content Include="Scripts\summernote\plugin\databasic\summernote-ext-databasic.js" />
+    <Content Include="Scripts\summernote\plugin\hello\summernote-ext-hello.js" />
+    <Content Include="Scripts\summernote\plugin\specialchars\summernote-ext-specialchars.js" />
+    <Content Include="Scripts\summernote\summernote-bs4.js" />
+    <Content Include="Scripts\summernote\summernote-bs4.min.js" />
+    <Content Include="Scripts\summernote\summernote-lite.js" />
+    <Content Include="Scripts\summernote\summernote.js" />
+    <Content Include="Scripts\summernote\summernote.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\Img\" />
+    <Folder Include="Content\vendors\" />
+    <Folder Include="UploadedFilesTest\" />
+    <Folder Include="Views\File\" />
+    <Folder Include="Views\ImgSearch\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="assets\css\atlantis.css.map" />
+    <Content Include="assets\fonts\flaticon\Flaticon.eot" />
+    <Content Include="assets\fonts\flaticon\Flaticon.ttf" />
+    <Content Include="assets\fonts\flaticon\Flaticon.woff" />
+    <Content Include="assets\fonts\flaticon\_flaticon.scss" />
+    <Content Include="assets\fonts\fontawesome\fa-brands-400.eot" />
+    <Content Include="assets\fonts\fontawesome\fa-brands-400.ttf" />
+    <Content Include="assets\fonts\fontawesome\fa-brands-400.woff" />
+    <Content Include="assets\fonts\fontawesome\fa-brands-400.woff2" />
+    <Content Include="assets\fonts\fontawesome\fa-regular-400.eot" />
+    <Content Include="assets\fonts\fontawesome\fa-regular-400.ttf" />
+    <Content Include="assets\fonts\fontawesome\fa-regular-400.woff" />
+    <Content Include="assets\fonts\fontawesome\fa-regular-400.woff2" />
+    <Content Include="assets\fonts\fontawesome\fa-solid-900.eot" />
+    <Content Include="assets\fonts\fontawesome\fa-solid-900.ttf" />
+    <Content Include="assets\fonts\fontawesome\fa-solid-900.woff" />
+    <Content Include="assets\fonts\fontawesome\fa-solid-900.woff2" />
+    <Content Include="assets\fonts\simple-line-icons\Simple-Line-Icons.eot" />
+    <Content Include="assets\fonts\simple-line-icons\Simple-Line-Icons.ttf" />
+    <Content Include="assets\fonts\simple-line-icons\Simple-Line-Icons.woff" />
+    <Content Include="assets\fonts\simple-line-icons\Simple-Line-Icons.woff2" />
+    <Content Include="assets\fonts\summernote\summernote.eot" />
+    <Content Include="assets\fonts\summernote\summernote.ttf" />
+    <Content Include="assets\fonts\summernote\summernote.woff" />
+    <Content Include="assets\img\img-shadow.gvdesign" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.exe.config" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="bin\WebAdmin.dll.config" />
+    <None Include="packages.config" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Custormer\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\News\CreatNews.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\ListAllNews.cshtml" />
+    <Content Include="Views\Order\EditOrder.cshtml" />
+    <Content Include="Views\Order\FollowOrder.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Sendo\Create.cshtml" />
+    <Content Include="Views\Sendo\detailOrder.cshtml" />
+    <Content Include="Views\Sendo\Index.cshtml" />
+    <Content Include="Views\Sendo\ListOrder.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Statistical\Index.cshtml" />
+    <Content Include="Views\Statistical\Listorder.cshtml" />
+    <Content Include="Views\Statistical\StatisticalOrder.cshtml" />
+    <Content Include="Views\Statistical\StatisticalProduct.cshtml" />
+    <Content Include="Views\Use\Index.cshtml" />
+    <Content Include="Views\Use\Role.cshtml" />
+    <Content Include="Views\Voucher\Create.cshtml" />
+    <Content Include="Views\Voucher\Edit.cshtml" />
+    <Content Include="Views\Voucher\Index.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53455</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44336/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

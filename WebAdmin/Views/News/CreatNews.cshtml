@@ -1,0 +1,192 @@
+﻿@model WebAdmin.Models.News
+
+@{
+    ViewBag.Title = "CreatNews";
+}
+<div class="container mt-5">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Thông Tin Bài Viết</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label> Mô Tả Ngắn</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label> Mô Tả Dài</label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Description, new { @class = "chitiet", htmlAttributes = new { @class = "form-control chitiet" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group d-flex">
+
+            <div class="col-md-6">
+                <label> Danh Mục</label>
+
+                @Html.DropDownListFor(model => model.IdType, ViewBag.Category as SelectList, "--Chọn Danh Mục--", new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.IdType, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+        <div class=" form-group ml-2">
+            <div class="mr-3">
+                <button class="btn btn-sm btn-option" type="button" onclick="$('.addImg').trigger( 'click' )" )>Chọn ảnh </button>
+
+            </div>
+
+            <input class="addImg" multiple id="files" hidden type='file' onchange="readURL(this);" accept="image/*" />
+
+        </div>
+        <div class=" form-group ml-2">
+            <div class=" card-body row file-upload-content" id="file-upload-content" name=btnanh style="margin-top:-2%">
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Tạo mới" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+    }
+
+    <div>
+
+    </div>
+
+</div>
+<link href="~/Content/summernote/summernote.css" rel="stylesheet" />
+<style type="text/css">
+    .note-toolbar panel-heading {
+        color: #808080;
+    }
+
+    button.note-btn i {
+        color: #808080;
+    }
+
+    button.note-btn span {
+        color: #808080;
+    }
+
+    .note-editor.note-frame .note-btn {
+        border: 1px solid #4e0c0c !important;
+        background: #ffffff !important;
+    }
+</style>
+@section scripts{
+    <script src="~/Scripts/summernote/summernote.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $(document).ready(function () {
+                load();
+                $(".note-icon-trash").trigger("click");
+                $("#option").change(function () {
+                    var number = Number.parseInt($("#option").val());
+                    $("#frmOption").empty();
+                    for (var i = 0; i < number; i++) {
+                        $("#frmOption").append(`<input required class="form-control form-control-sm col-1" name="option${i}"/>`);
+                    }
+
+                })
+            });
+            function load() {
+                var myElement = $(".chitiet");
+                myElement.summernote({
+                    placeholder: 'Enter content....',
+                    tabsize: 2,
+                    height: 200,
+                    minHeight: 100,
+                    maxHeight: 300,
+                    focus: true,
+                    callbacks: {
+                        onImageUpload: function (files) {
+                            for (var i = 0; i < files.length; i++) {
+                                uploadImage(files[i]);
+                            }
+                        }
+                    },
+                    toolbar: [
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['font', ['strikethrough', 'superscript', 'subscript']],
+                        ['fontsize', ['fontsize']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['height', ['height']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture', 'video']],
+                        ['view', ['fullscreen', 'codeview', 'help']],
+                    ],
+                    disableResizeEditor: true,
+                    height: 300,
+                    minHeight: null, // set minimum height of editor
+                    maxHeight: null,
+                    codemirror: {
+                        theme: 'monokai'
+                    }
+                    // set editor height
+                    // set maximum height of editor
+                    // set focus to editable area after initializing summernote
+                });
+            }
+
+            $('#Upload').click(function () {
+
+
+
+            });
+
+        });
+        function readURL(input) {
+            var fileUpload = $("#files").get(0);
+            var files = fileUpload.files;
+            var img = $('#file-upload-content');
+            // Create  a FormData object
+            var fileData = new FormData();
+
+            // if there are multiple files , loop through each files
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+
+            // Adding more keys/values here if need
+            fileData.append('Test', "Test Object values");
+
+            $.ajax({
+                url: '/File/UploadFiles', //URL to upload files
+                type: "POST", //as we will be posting files and other method POST is used
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                data: fileData,
+                success: function (result) {
+                    console.log(result)
+                    $(img).empty();
+                    $.each(result.Img, function (k, v) {
+                        var let = ` <div class="col-2">
+                            <img src="${v}" class="img-thumbnail" alt="...">
+                        </div>`;
+                        $(img).append(let);
+                    });
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        }
+    </script>
+}

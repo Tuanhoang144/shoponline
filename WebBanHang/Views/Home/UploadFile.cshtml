@@ -1,0 +1,64 @@
+﻿@model WebBanHang.Models.FileUploadModel
+@{
+    ViewBag.Title = "UploadFile";
+
+}
+
+
+
+<div class="modal fade" id="ModalImg" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        @using (Html.BeginForm("UploadFiles", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalLabel">Tìm kiếm hình ảnh</h6>
+           
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body text-center">
+        
+
+                    @Html.AntiForgeryToken()
+
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="d-flex">
+                        <div class="col-12">
+                            @Html.EditorFor(model => model.file, new { htmlAttributes = new { @class = "form-control", @type = "file" } })
+                            @Html.ValidationMessageFor(model => model.file, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                        <div class=" col-md-10">
+                            <input type="submit" hidden value="Tìm kiếm ảnh" id="searchImg" class="btn btn-danger" />
+                        </div>
+
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+</div>
+    <script >
+        $(document).ready(function () {
+
+            $("#file").change(function () {
+                $("#searchImg").click()
+            })
+
+        })
+    
+        
+    </script>
+    
+    

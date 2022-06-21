@@ -1,0 +1,169 @@
+﻿@model WebBanHang.Models.Emtity.VoucherOrder
+@{
+    ViewBag.Title = "DetailOrder";
+    var UrlSerVer = UrlContant.UrlSerVer;
+}
+@using WebBanHang.Contant
+@section  scripts{
+<script>
+    $(document).ready(function () {
+        $("#btnCancel").click(function () {
+            let id = window.location.href.split('/').pop();
+            $("#idorder").val(id);
+        });
+
+    })
+
+</script>
+}
+<div class="pt-5">
+    <div class="container col-8 mt-5 pt-5">
+        <section class="order_details section_gap">
+            <div class="container">
+                <h3 class="title_confirmation">Thông Tin Đơn Hàng</h3>
+                <div class="row order_d_inner">
+                    <div class="col-lg-4">
+                        <div class="details_item">
+                            <h4>Order Info</h4>
+                            <ul class="list">
+                                <li><a href="#"><span>Mã đơn hàng</span> : @Model.id</a></li>
+                                <li><a href="#"><span>Ngày tạo</span> : @(Model.createdate.Value.ToString("dd-MM-yyyy hh:ss tt"))</a></li>
+                                <li><a href="#"><span>Tổng tiền</span> :@((Model.grossAmount.Value-Model.discountAmount.Value+Model.shiper).Value.ToString("N0"))  VNĐ</a></li>
+                                <li><a href="#"><span>Hình thức thanh toán</span> :  @(Model.paymentmethods==0?"Thanh toán khi nhận hàng": "Thanh toán online")</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="details_item">
+                            <h4>Thông tin người nhận</h4>
+                            <ul class="list">
+                                <li><a href="#"><span>Họ tên </span> : @Model.Name</a></li>
+                                <li><a href="#"><span>SĐT người nhận </span> : @Model.telephone</a></li>
+                                <li><a href="#"><span>Email</span> : @Model.email</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="details_item">
+                            <h4>Đỉa chỉ người nhận</h4>
+                            <ul class="list">
+                                <li><a href="#"><span>Đỉa chỉ</span> :@Model.adrees </a></li>
+                                <li><a href="#"><span>Tỉnh</span> : @Model.province</a></li>
+                                <li><a href="#"><span>Quận/Huyện</span> : @Model.district</a></li>
+                                <li><a href="#"><span>Phường/Xã </span> :  @Model.ward</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="order_details_table">
+                    <h2>Chi tiết đơn hàng</h2>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Sản phẩm</th>
+                                    <th scope="col">Số lượng</th>
+                                    <th scope="col">Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.VoucherOrderDetails)
+                                {
+                                <tr>
+                                    <td>
+                                        <a  class="nav-link active link text-dark" href="/Home/Detail/@item.product_id">@(item?.Product?.name)</a>
+                                    </td>
+                                    <td>
+                                        <h5>x @item.quantity</h5>
+                                    </td>
+                                    <td>
+                                        <p>@((item.grossAmount.Value - item.discountAmount).Value.ToString("N0"))  VNĐ</p>
+                                    </td>
+                                </tr>
+                                }
+                          
+                                <tr>
+                                    <td>
+                                        <h4>Tổng tiền hàng</h4>
+                                    </td>
+                                    <td>
+                                        <h5></h5>
+                                    </td>
+                                    <td>
+                                        <p>@((Model.grossAmount.Value - Model.discountAmount.Value).ToString("N0")) VNĐ</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Shipping</h4>
+                                    </td>
+                                    <td>
+                                        <h5></h5>
+                                    </td>
+                                    <td>
+                                        <p> @(Model.shiper.Value.ToString("N0")) VNĐ</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Tổng tiền khách phải trả</h4>
+                                    </td>
+                                    <td>
+                                        <h5></h5>
+                                    </td>
+                                    <td>
+                                        <p>  @((Model.grossAmount.Value-Model.discountAmount.Value+Model.shiper).Value.ToString("N0"))  VNĐ </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    
+</div>
+
+<script>
+    function danhgia(url, name, id, idproduct) {
+        $('.hidemodal').append('<div class="modal modalevaluate" tabindex="-1" role="dialog" style="display:block;background-color: rgba(0, 0, 0, 0.5);">' +
+            '<div class="modal-dialog" role="document" ><div class="modal-content" style="width: 700px;"><div class="modal-header">' +
+            ' <h5 class="modal-title">Viết đánh giá</h5><button type="button" class="btn btn-light" onclick=" removemodalevaluate()">X Đóng</button>' +
+            '</div><div class="modal-body" style="padding: 40px;"> <div class="form-group row"> <div>' +
+            '<img src="' + url + '" class="rounded float-start" style="max-height: 300px;" >' +
+            '</div> <div > <h5>' + name + '</h5> </div>  </div> <div class="form-group row"><span >Bạn cảm thấy sản phẩm này như thế nào? :</span>' +
+            ' <select class="form-control chosestar" style="width:200px" > <option value="" selected > Choose option</option>' +
+            '<option value="5">5 sao</option><option value="4">4 sao</option><option value="3">3 sao</option> <option value="2">2 sao</option><option value="1">1 sao</option>' +
+            '</select>  </div>  <div class="form-group row"> <textarea style="margin-top:20px" class="form-control messageevaluate" id="exampleFormControlTextarea1" rows="3" placeholder="mời bạn chia sẻ thêm cảm nhận về sản phẩm"></textarea>' +
+            '</div> </div> <button type="button" id="confirmregisteradd" class="btn btn-primary" onClick="ckeckevaluate(' + id + ',' + idproduct + ')">Gửi đánh giá</button></div></div></div >')
+
+    }
+
+    function ckeckevaluate(id, idproduct) {
+        if ($('.chosestar').val() == '') {
+            alert('vui lòn chọn số sao');
+
+        }
+        else {
+            $.ajax({
+                url: '/Comestic/savevalute', type: 'post',
+                data: {
+                    id: id,
+                    idproduct: idproduct,
+                    point: $('.chosestar').val(),
+                    mesage: $('.messageevaluate').val(),
+
+                },
+                success: function (data) {
+                    $('.modalevaluate').remove()
+                },
+
+            });
+        }
+    }
+    function removemodalevaluate() {
+        $('.modalevaluate').remove()
+    }
+</script>

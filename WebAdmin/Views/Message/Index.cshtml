@@ -1,0 +1,151 @@
+﻿@model IEnumerable<WebAdmin.Models.Contract>
+
+@{
+    ViewBag.Title = "Index";
+}
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $(document).on('click', 'button[name=Edit]', function () {
+                $('#addRowModal').modal("show");
+                var Name = $(this).closest('tr').find("td:eq(0)").text();
+                var id = $(this).closest('tr').find("td").attr("id").trim();
+                var Email = $(this).closest('tr').find("td:eq(1)").text();
+                $("#Email").val(Email);
+                $("#addName").val(Name);
+                $("#idMESS").val(id);
+               
+            });
+        });
+
+    </script>
+}
+<!-- Modal -->
+<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header no-bd">
+                <h5 class="modal-title">
+                    <span class="fw-mediumbold">
+                        Mời nhập thông tin
+                    </span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/Message/Rely" method="get">
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group form-group-default">
+                                <label>Tên người gửi</label>
+                                <input disabled id="addName" name="Name" type="text" class="form-control" placeholder="Vui Lòng Nhập Thông Tin" required>
+                                <input id="idMESS"  name="idMESS" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group form-group-default">
+                                <label>Email người gửi</label>
+                                <input disabled id="Email" name="Name" type="text" class="form-control" placeholder="Vui Lòng Nhập Thông Tin" required>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group form-group-default">
+                                <label>	Subject</label>
+                                <input   id="Subject" name="Subject" type="text" class="form-control" placeholder="Vui Lòng Nhập Thông Tin" required>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group form-group-default">
+                                <label>	Message</label>
+                               <textarea name="Message" class="form-control" rows="4">  </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer no-bd">
+                    <button type="submit" id="addRowButton" class="btn btn-success">Gửi</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-12 mt-4">
+
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex align-items-center">
+                <h4 class="card-title">Danh Sách Tin Nhắn</h4>
+
+            </div>
+        </div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Message)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td id="@item.ID">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </td>
+
+                    <td>
+
+                        <div class="form-button-action">
+                            <button type="button" name="Edit" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                <i class="fa
+icon-cursor"></i>
+                            </button>
+                            <a href="/Message/DeleteMess/@item.ID" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

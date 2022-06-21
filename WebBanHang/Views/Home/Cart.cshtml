@@ -1,0 +1,178 @@
+﻿@model IEnumerable<WebBanHang.Models.Emtity.Cart>
+
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var UrlSerVer = UrlContant.UrlSerVer;
+}
+@using WebBanHang.Contant
+<!--================Cart Area =================-->
+<!--================End Cart Area =================-->
+
+@{
+    if (Model.Count() == 0)
+    {
+        <div class="mt-5" style="height:100px">
+
+        </div>
+
+        <div class="mt-5" style="height:340px">
+            <div class="container mt-4">
+                <div class="alert alert-warning" role="alert">
+                    Bạn chưa chọn sản phẩm nào
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <section class="cart_area mt-5">
+            <div class="container  mt-2">
+                <div class="cart_inner">
+                    <form action="/Home/UpdateCart" method="post">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Sản phẩm</th>
+                                        <th scope="col">Kích thước</th>
+                                        <th scope="col">Giá tiền</th>
+                                        <th scope="col" style="width:100px">Số lượng</th>
+                                        <th scope="col">Tổng tiền</th>
+                                        <th scope="col">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="media">
+                                                    <div class="d-flex">
+                                                        <img width="100" src="@(UrlSerVer+item.Product.image)" alt="">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <p>@item.Product.name</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <h5>@item.Product.Option_Product.Where(X => X.Id == item.IdOption).FirstOrDefault().option</h5>
+                                            </td>
+                                            <td>
+
+                                                <h6>
+
+                                                    @(item.Product.price.Value.ToString("N0"))
+                                                </h6>
+
+
+                                                <input hidden value="@(item.Product.price.Value)" />
+
+
+
+
+                                            </td>
+                                            <td>
+
+                                                <input type="number" onchange="ChangeProduct(this)" name="@item.id" id="@item.id" maxlength="12" value="@item.quantity" title="Quantity:"
+                                                       class="input-text qty form-control">
+
+
+                                            </td>
+                                            <td>
+                                                <h5>@item.intomoney.Value.ToString("N0")</h5>
+                                            </td>
+                                            <td>Xóa</td>
+                                        </tr>
+
+                                    }
+
+                                    <tr class="bottom_button">
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <h5>Tổng tiền</h5>
+                                        </td>
+                                        <td>
+                                            <h5 id="intomoney">@Model.Sum(x => x.intomoney).Value.ToString("N0")</h5>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr class="out_button_area">
+                                        <td>
+                                            <button class="gray_btn" >Cập nhật giỏ hàng</button>
+
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <div class="checkout_btn_inner d-flex align-items-center">
+                                                <a class="gray_btn" href="/Home/ListAll">Tiếp tục mua sắm</a>
+                                                <a class="primary-btn" href="/Home/ListOrder">Thanh Toán</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                   
+                </div>
+            </div>
+        </section>
+    }
+}
+
+@section  scripts{
+    <script>
+
+        function ChangeProduct(event) {
+            var quantity = $(event).val();
+            if (quantity > 0) {
+                var price = $(event).closest("tr").find("td:eq(2)").find("input:eq(0)").val()
+             
+                var priceConvert = numberWithCommas(price * quantity);
+                $(event).closest("tr").find("td:eq(4)").empty()
+                $(event).closest("tr").find("td:eq(4)").append(`<h5>` + priceConvert + `</h5>`)
+            }
+            else {
+                $(event).val("1");
+            }
+            let sum = 0;
+            for (var i = 0; i < $(".qty").length; i++) {
+                var quantity = $($(".qty")[i]).val();
+       
+                var price = $($(".qty")[i]).closest("tr").find("td:eq(2)").find("input:eq(0)").val()
+                sum += price * quantity;
+           
+                
+            }
+            $("#intomoney").text(`${numberWithCommas(sum)}`)
+           
+        }
+        function numberWithCommas(x) {
+            x = x.toString();
+            console.log(x);
+            var pattern = /(-?\d+)(\d{3})/;
+            while (pattern.test(x))
+                x = x.replace(pattern, "$1,$2");
+            return x;
+        }
+    </script>}
