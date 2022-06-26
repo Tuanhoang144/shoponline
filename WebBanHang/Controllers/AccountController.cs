@@ -64,6 +64,47 @@ namespace WebBanHang.Controllers
             return PartialView();
         }
 
+        private WebBanHangDB DB = new WebBanHangDB();
+        [AllowAnonymous]
+        public ActionResult InfoUse()
+        {
+            try {
+                ViewBag.Eror = "";
+                var Custormer = (Custormer)Session["Login"];
+                return View(DB.Custormers.Where(x=>x.uid==Custormer.uid).FirstOrDefault());
+            } catch {
+             return   RedirectToAction("Index", "Home");
+            }
+          
+        }
+        [AllowAnonymous]
+        public ActionResult EditPassWord(FormCollection collection)
+        {
+            try
+            {
+                var password = collection["NewPass"];
+                var ConfirmPassword = collection["ConfirmPassword"];
+                var Custormer = (Custormer)Session["Login"];
+            var CustormerUpdate=  DB.Custormers.Where(x => x.uid == Custormer.uid).FirstOrDefault();
+                if (password == ConfirmPassword)
+                {
+                    CustormerUpdate.password= new MD5().GetMD5(password);
+                    DB.SaveChanges();
+                    return RedirectToAction("Login");
+
+                }
+                ViewBag.Eror = "Mật khẩu không trùng khớp";
+                return View("InfoUse", Custormer);
+             
+            }
+            catch
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+        
+
         [AllowAnonymous]
         public ActionResult Login()
         {

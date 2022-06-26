@@ -1108,7 +1108,7 @@ namespace WebBanHang.Controllers
                 Cart cart = DB.Carts.Find(id);
                 DB.Carts.Remove(cart);
                 DB.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Cart");
             }
             catch { return View("Error"); }
         }
