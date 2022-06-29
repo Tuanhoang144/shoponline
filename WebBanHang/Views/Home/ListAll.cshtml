@@ -9,6 +9,12 @@
 @using PagedList.Mvc;
 @using WebBanHang.Models.Emtity
 <!-- Start Banner Area -->
+<style>
+    .heght-link {
+              display:flex;
+              height:52px;
+    }
+</style>
 <section class="banner-area organic-breadcrumb">
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
@@ -126,10 +132,10 @@
 
 
                                     </div>
-                                    <div class="prd-bottom">
+                                    <div class="prd-bottom heght-link" style="height:40px">
                                         <a name="AddPro" id="@item.Id" style="cursor:pointer; border:none;background:none" class="social-info">
                                             <span class="ti-bag"></span>
-                                            <p class="hover-text">Thêm vào giở hàng</p>
+                                            <p class="hover-text">Thêm vào giỏ hàng</p>
                                         </a>
 
 
@@ -163,7 +169,7 @@
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
 
-                <div class="pagination">
+                <div class="pagination" style="border-left: 0">
                     <div class="d-flex paging-service">
                         @*<div class="paging-service-1">
                                 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
@@ -214,10 +220,10 @@
                                     }
 
                                 </div>
-                                <div class="prd-bottom">
+                                <div class="prd-bottom heght-link">
                                     <a name="AddPro" id="@item.Id" style="cursor:pointer; border:none;background:none" class="social-info">
                                         <span class="ti-bag"></span>
-                                        <p class="hover-text">Thêm giở hàng</p>
+                                        <p class="hover-text">Thêm vào giỏ hàng</p>
                                     </a>
 
 
@@ -267,10 +273,10 @@
                                     }
 
                                 </div>
-                                <div class="prd-bottom">
+                                <div class="prd-bottom heght-link">
                                     <a name="AddPro" id="@item.Id" style="cursor:pointer; border:none;background:none" class="social-info">
                                         <span class="ti-bag"></span>
-                                        <p class="hover-text">add to bag</p>
+                                        <p class="hover-text">Thêm vào giỏ hàng</p>
                                     </a>
 
 
